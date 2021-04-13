@@ -56,6 +56,9 @@ module.exports = strapi => {
         case 'ms':
           connection.settings.client = 'mssql';
           break;
+        case 'oracle':
+          connection.settings.client = 'oracle';
+          break;
       }
 
       // Make sure the client is supported.
@@ -116,6 +119,9 @@ module.exports = strapi => {
         : '';
 
       switch (options.client) {
+        case 'oracle':
+          options.connection.fetchAsString = [ 'DATE', 'NUMBER', 'CLOB' ];
+          break
         case 'mysql':
           options.connection.supportBigNumbers = true;
           options.connection.bigNumberStrings = true;
