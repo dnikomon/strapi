@@ -53,8 +53,6 @@ module.exports = async ({ scope, connection }) => {
     );
   };
 
-  await client.raw('select 1+1 as result').catch(destroyClientAndThrow);
-
   return checkDatabaseIsEmpty[settings.client](client, settings)
     .then(isEmpty => {
       if (isEmpty) return;
